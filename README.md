@@ -1,3 +1,9 @@
+
+# V2 - db for the modern age. Built for the LLM interaction
+Check out this space for more info coming up
+
+
+# V1 - Unstructure dataprocessing
 # DocQA
 Document Question Answering with the added powers of OCR. Also has it's own "Vector Database", no Pinecone needed.
 
