@@ -7,13 +7,13 @@ def cli():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument("--filename", type=str)
+    parser.add_argument("--documents", type=str)
     parser.add_argument("--api_key", type=str)
 
     args = parser.parse_args().__dict__
-    filename = args.pop("filename")
+    documents = args.pop("documents")
     os.environ["OPENAI_API_KEY"] = args.pop("api_key")
-    docqa = DocQA(file=filename)
+    docqa = DocQA(documents=documents)
 
     while True:
         question = input(

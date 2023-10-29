@@ -20,7 +20,7 @@ class DocInput:
     Takes PDF/Image input; extracts text info from it, does chunking and sends forward
     """
 
-    def __init__(self, file: str, chunk_size: int = 128, chunk_overlap: int = 10):
+    def __init__(self, documents: str, chunk_size: int = 128, chunk_overlap: int = 10):
         extension = file.split(".")[-1]
         self.text = ""
         self.chunk_size = chunk_size
@@ -90,15 +90,15 @@ class DocQA:
     Creates a DocQA instance with all document indexed and processed. Receives the query and answers it
     """
 
-    def __init__(self, file: str):
-        self.file = file
+    def __init__(self, documents: str):
+        self.documents = documents
         self.embedding_obj = BaseEmbedding()
         openai.api_key = os.environ["OPENAI_API_KEY"]
         self.post_init()
 
     def post_init(self):
         "Document indexing"
-        doc_input = DocInput(self.file)
+        doc_input = DocInput(self.documents)
         self.chunks = doc_input.get_doc_input()
 
         index_document = IndexDocument(self.chunks, self.embedding_obj)
